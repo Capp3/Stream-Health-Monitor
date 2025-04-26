@@ -1,0 +1,80 @@
+backend:                                   # Backend configuration
+  database:                                # Database configuration
+    - type: prometheus                     # What database is being used
+      host: ${db_host:-localhost}          # Hostname, or IP address, of the database
+      port: ${db_port:-9090}               # Port of the database
+      username: ${db_un:-rtmphm}           # Database username
+      password: ${db_pw:-rtmphm}           # Database password
+  reporting:                               # Reporting configuration
+    - type: json_output                    # What reporting method is being used (json_output), mux of all data
+      port: 12000                          # Port to provide output on for HTTP GET requests
+  logging:                                 # Logging setup
+    level: debug                           # Log at what level possible, {debug, error, warning, info}
+    location: logs/rtmphm.log              # Log path
+    retention: 10                          # Log retention in days
+  networking:
+    interface: en0                         # Network interface to use
+speedtest:                                 # Speedtest definitions, if omitted no speedtest will be performed
+  polling_time: 10                         # How often speedtest performed, in seconds
+  server:                                  # what server to use, if undefined default to speedtest.net
+streams:                                   # Primary Heading, stream configurations
+  - name: stream1                          # Stream name
+    provider:                              # Provider (Stream) configuration            
+      vimeolive:                           # Provider name, Provider specific configuration follows
+        eventid: '4797083'
+        vimeo_token: ${vimeo_token}
+        vimeo_key: ${vimeo_key}
+        vimeo_secret: ${vimeo_secret}
+      polling_time: 2
+    hardware:
+      primary:
+        webpresentor:
+          ip_address: 172.16.63.21
+      secondary:
+        webpresentor:
+          ip_address: 172.16.63.22
+  - name: stream2                          # Stream name
+    provider:                              # Provider (Stream) configuration            
+      vimeolive:                           # Provider name, Provider specific configuration follows
+        eventid: '4797121'
+        vimeo_token: ${vimeo_token}
+        vimeo_key: ${vimeo_key}
+        vimeo_secret: ${vimeo_secret}
+      polling_time: 2
+    hardware:
+      primary:
+        webpresentor:
+          ip_address: 172.16.63.23
+      secondary:
+        webpresentor:
+          ip_address: 172.16.63.24
+  - name: stream3                          # Stream name
+    provider:                              # Provider (Stream) configuration            
+      vimeolive:                           # Provider name, Provider specific configuration follows
+        eventid: '4898539'
+        vimeo_token: ${vimeo_token}
+        vimeo_key: ${vimeo_key}
+        vimeo_secret: ${vimeo_secret}
+      polling_time: 2
+    hardware:
+      primary:
+        webpresentor:
+          ip_address: 172.16.63.25
+      secondary:
+        webpresentor:
+          ip_address: 172.16.63.26
+  - name: stream4                          # Stream name
+    provider:                              # Provider (Stream) configuration            
+      vimeolive:                           # Provider name, Provider specific configuration follows
+        eventid: '4797153'
+        vimeo_token: ${vimeo_token}
+        vimeo_key: ${vimeo_key}
+        vimeo_secret: ${vimeo_secret}
+      polling_time: 2
+    hardware:
+      primary:
+        webpresentor:
+          ip_address: 172.16.63.27
+      secondary:
+        webpresentor:
+          ip_address: 172.16.63.28

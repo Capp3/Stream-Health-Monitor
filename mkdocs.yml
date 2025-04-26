@@ -1,0 +1,52 @@
+site_name: Stream-Health-Monitor
+repo_url: https://github.com/capp3/Stream-Health-Monitor
+site_url: https://capp3.github.io/Stream-Health-Monitor
+site_description: Monitor video stream health from appliance to web
+site_author: Dom Capparelli
+edit_uri: edit/main/docs/
+repo_name: capp3/Stream-Health-Monitor
+copyright: Maintained by <a href="https://capp3.com">capp3</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src/stream_health_monitor"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/capp3/Stream-Health-Monitor
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/Stream-Health-Monitor
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
