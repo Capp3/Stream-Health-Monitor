@@ -1,0 +1,14 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Stream Health Monitor: Project Overview
+
+**Goal:** Create a centralized dashboard for real-time monitoring of live video stream health from various sources, comparing it against local network/hardware capabilities.
+
+**Core Problem:** Lack of unified visibility into stream health and performance potential.
+
+**Target Users:** Broadcast engineers and managers needing quick confirmation of broadcast quality.
+
+**Key Document:** [projectbrief.md](mdc:docs/projectbrief.md) provides the full project details.

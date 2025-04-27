@@ -1,0 +1,15 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Stream Health Monitor: Monitoring Targets
+
+This project focuses on monitoring the following sources:
+
+1.  **Blackmagic Web Presenters:** (HD/4K) via JSON scraping, SNMP, or future APIs. Key metrics: Status, Input, Output, Temp, Errors.
+2.  **Vimeo Live Streams:** (and potentially YouTube) via API. Key metrics: Status, Viewers, Health Score, Bitrate, Latency.
+3.  **Generic Streams (RTMP/SRT):** via FFprobe/GStreamer. Key metrics: Resolution, Codec, Bitrate, FPS, Packet Loss, Timestamps, Buffer.
+4.  **Local Network Environment:** via ICMP, SNMP, OS commands. Key metrics: Latency, Packet Loss, Bandwidth Usage, Jitter.
+
+Refer to [projectbrief.md](mdc:docs/projectbrief.md) for detailed metric requirements.

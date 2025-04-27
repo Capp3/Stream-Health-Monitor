@@ -89,49 +89,61 @@ speedtest:
 
 ### Streams Configuration
 
-The most important section that defines the streams to monitor:
+The most important section defines the streams to monitor. Each stream can have multiple providers (API-based or direct HLS) and multiple hardware encoders tagged as primary/secondary, allowing flexible health checks across different sources.
 
 ```yaml
 streams:
-  - name: stream1
-    provider:
-      vimeolive:
-        eventid: '1231231'
-        vimeo_token: ${vimeo_token}
-        vimeo_key: ${vimeo_key}
-        vimeo_secret: ${vimeo_secret}
-      polling_time: 2
-    hardware:
-      primary:
-        webpresentor:
-          ip_address: 192.168.1.100
-      secondary:
-        webpresentor:
-          ip_address: 192.168.1.101
+  - name: "Local RTMP Stream"
+    enabled: true
+    polling_interval: 30
+    providers:
+      - type: ffprobe
+        label: "RTMP Source"
+        url: "rtmp://example.com/live/stream1"
+
+  - name: "Studio Encoder"
+    enabled: true
+    polling_interval: 15
+    providers:
+      - type: web_presenter
+        label: "Primary Encoder"
+        host: "192.168.1.100"
+        api_path: "/status.json"
+      - type: web_presenter
+        label: "Secondary Encoder"
+        host: "192.168.1.101"
+        api_path: "/status.json"
+
+  - name: "Vimeo Live Event"
+    enabled: true
+    polling_interval: 60
+    providers:
+      - type: vimeo
+        label: "Vimeo API"
+        event_id: "123456"
+        api_key_env: "VIMEO_API_KEY"  # Vimeo API token to fetch HLS link
+      - type: ffprobe
+        label: "Vimeo HLS"
+        url: "https://player.vimeo.com/event/123456/hls.m3u8"
+
+  - name: "YouTube Live Stream"
+    enabled: true
+    polling_interval: 60
+    providers:
+      - type: youtube
+        label: "YouTube API"
+        video_id: "abcd1234"
+        api_key_env: "YOUTUBE_API_KEY"
+      - type: http
+        label: "YouTube HLS"
+        url: "https://youtube.com/hls/abcd1234.m3u8"
 ```
 
-For each stream, you define:
-
-#### Stream Name
-
-A unique identifier for the stream.
-
-#### Provider
-
-The streaming provider configuration:
-
-- Provider type (e.g., `vimeolive`, `rtmp`, `srt`)
-- Provider-specific configuration (varies by provider type)
-- **polling_time**: How often to poll this provider (in seconds)
-
-#### Hardware
-
-Hardware devices associated with this stream:
-
-- **primary**: Primary hardware device configuration
-  - Device type (e.g., `webpresentor`)
-  - Device-specific configuration
-- **secondary**: Optional backup hardware device configuration
+Key Points:
+- Multiple providers per stream: allows API-driven health checks and direct HLS probing.
+- Vimeo: use API to retrieve m3u8 link, then probe via ffprobe/GStreamer.
+- Hardware encoders: tag primary/secondary devices for Web Presenters.
+- Dynamic streams (e.g., YouTube Live) can be monitored without dedicated hardware.
 
 ## Environment Variables
 

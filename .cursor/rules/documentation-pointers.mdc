@@ -1,0 +1,25 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Stream Health Monitor: Key Documentation Files
+
+Refer to these documents for detailed project information:
+
+*   **Project Context:**
+    *   [productContext.md](mdc:docs/productContext.md): Product definitions and user needs.
+    *   [techContext.md](mdc:docs/techContext.md): Technical environment and dependencies.
+    *   [systemPatterns.md](mdc:docs/systemPatterns.md): System design patterns.
+*   **Project Status:**
+    *   [tasks.md](mdc:docs/tasks.md): Current task list and priorities.
+    *   [status.md](mdc:docs/status.md): Project status overview and blockers.
+    *   [progress.md](mdc:docs/progress.md): Implementation progress tracking.
+    *   [activeContext.md](mdc:docs/activeContext.md): Current development focus.
+*   **Architecture & Design:**
+    *   [architecture.md](mdc:docs/architecture.md): System architecture.
+    *   [technical.md](mdc:docs/technical.md): Technical decisions.
+*   **Initial Brief:**
+    *   [projectbrief.md](mdc:docs/projectbrief.md): The original project kickoff document.
+
+Remember to keep these documents updated as per the general project rules.

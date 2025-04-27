@@ -312,6 +312,17 @@ The combination of Prometheus for metrics and ELK for logs provides a comprehens
 - Multiple Logstash instances for high throughput
 - Configurable index lifecycle management
 
+## Architecture Decision
+
+Based on the Architecture Creative Phase (docs/creative-phase-architecture.md), we adopt a **Modular Monolith** architecture:
+
+- Each monitoring module (Web Presenter, Vimeo, FFprobe, Network) resides in its own sub-package under `src/stream_health_monitor/monitors/`.
+- The FastAPI HTTP API service uses separate routers per module.
+- A single Docker image hosts all modules, with environment variables to enable or disable individual modules.
+- Metrics are exposed via a unified `/metrics` endpoint aggregated by FastAPI before scraping.
+
+This decision balances modularity and operational simplicity, enabling isolated development and testing while maintaining a straightforward deployment model.
+
 ## Conclusion
 
 The RTMP_HMonitor architecture provides a flexible, modular approach to real-time stream monitoring. The current implementation focuses on metrics collection using Prometheus, with a planned evolution path to incorporate ELK stack for enhanced logging and analysis capabilities.

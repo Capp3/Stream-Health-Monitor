@@ -1,21 +1,32 @@
 [project]
 name = "Stream-Health-Monitor"
-version = "0.0.1"
+version = "0.0.2"
 description = "Monitor video stream health from appliance to web"
 authors = [{ name = "Dom Capparelli", email = "web@capparelli.ie" }]
 readme = "README.md"
 keywords = ['python']
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.11,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "aiohttp>=3.11.18",
+    "fastapi>=0.115.12",
+    "httpx>=0.28.1",
+    "netifaces>=0.11.0",
+    "prometheus-client>=0.21.1",
+    "psutil>=7.0.0",
+    "pydantic>=2.11.3",
+    "python-dotenv>=1.1.0",
+    "pyvimeo>=1.1.2",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.3",
+    "uvicorn>=0.34.2",
 ]
 
 [project.urls]
@@ -25,16 +36,23 @@ Documentation = "https://capp3.github.io/Stream-Health-Monitor/"
 
 [dependency-groups]
 dev = [
-    "pytest>=7.2.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "pytest-asyncio>=0.26.0",
     "pre-commit>=2.20.0",
     "tox-uv>=1.11.3",
     "deptry>=0.23.0",
-    "mypy>=0.991",
-    "pytest-cov>=4.0.0",
+    "mypy>=1.15.0",
     "ruff>=0.11.5",
     "mkdocs>=1.4.2",
     "mkdocs-material>=8.5.10",
     "mkdocstrings[python]>=0.26.1",
+    "black>=25.1.0",
+    "flake8>=7.2.0",
+    "basedpyright>=1.29.0",
+    "ipython>=9.1.0",
+    "pyinstrument>=5.0.1",
+    "tqdm>=4.67.1",
 ]
 
 [build-system]

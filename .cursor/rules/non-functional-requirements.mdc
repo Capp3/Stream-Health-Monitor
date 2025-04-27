@@ -1,0 +1,16 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Stream Health Monitor: Non-Functional Requirements
+
+Key NFRs to consider during development:
+
+- **Scalability:** Design to monitor initial targets (4 feeds, 1 network) but allow flexibility for future expansion (FOSS goal).
+- **Performance:** Aim for low latency monitoring. Polling frequencies should be configurable.
+- **Reliability:** Ensure high availability. Monitoring system failures should be self-reported.
+- **Maintainability:** Prioritize clear code, use YAML for approachable configuration, and limit the interface to information display.
+- **Security:** Isolate sensitive data (e.g., API keys) in `.env` files within the `config/` directory.
+
+See [projectbrief.md](mdc:docs/projectbrief.md) for more context.

@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Update requirements.txt",
+        "type": "shell",
+        "command": "source .venv/bin/activate && pip freeze > requirements.txt",
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }, 
+      {
+        "label": "Start Supporting Services (Docker Compose)",
+        "type": "shell",
+        "command": "docker compose -f docker/docker-compose.yml up -d",
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "dependsOn": []
+      },
+      {
+        "label": "Stop Supporting Services (Docker Compose)",
+        "type": "shell",
+        "command": "docker compose -f docker/docker-compose.yml down",
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "dependsOn": []
+      },
+      {
+        "label": "Restart Supporting Services",
+        "type": "shell",
+        "command": "docker compose -f docker/docker-compose.yml down && docker compose -f docker/docker-compose.yml up -d",
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "dependsOn": []
+      }      
+    ]
+  }
+  

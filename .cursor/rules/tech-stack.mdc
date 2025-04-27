@@ -1,0 +1,14 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Stream Health Monitor: Technology Stack
+
+- **Backend:** Python 3.12 (Libraries: `requests`, `subprocess`, `python-vimeo`, `schedule`/`APScheduler`).
+- **Data Acquisition:** Custom Python scripts, JSON scraping.
+- **Time-Series Database:** Prometheus *or* InfluxDB (Decision Pending - see [database-considerations.mdc](mdc:.cursor/rules/database-considerations.mdc)).
+- **Visualization:** Grafana.
+- **Deployment:** Linux (Ubuntu/Debian/CentOS recommended) via Docker.
+
+See [projectbrief.md](mdc:docs/projectbrief.md) and relevant documentation in `docs/` for more details.

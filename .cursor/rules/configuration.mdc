@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Stream Health Monitor: Configuration
+
+- **Configuration Files:** Use YAML for general configuration, stored in the root `config/` directory.
+- **Sensitive Data:** Store sensitive information (API keys, credentials) in a `.env` file located in the root `config/` directory.
+- **Environment Variables:** Document all environment variables in `config/.env.sample`.
+- **Requirement:** Any time a new environment variable is added to the code, it **must** be added to both `config/.env` and `config/.env.sample`.
+
+Refer to [projectbrief.md](mdc:docs/projectbrief.md) for initial thoughts.

@@ -1,0 +1,77 @@
+# Stream Health Monitor Configuration Sample
+
+# Global Settings
+metrics_port: 8001          # Port exposed for Prometheus to scrape
+log_level: INFO             # Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+
+# Streams Definitions: define logical stream groups and their providers
+streams:
+  - name: "Local RTMP Stream"
+    enabled: true
+    polling_interval: 30     # seconds
+    providers:
+      - type: ffprobe
+        label: "RTMP Source"
+        url: "rtmp://example.com/live/stream1"
+
+  - name: "Studio Encoder"
+    enabled: true
+    polling_interval: 15
+    providers:
+      - type: web_presenter
+        label: "Primary Encoder"
+        host: "192.168.1.100"
+        api_path: "/status.json"
+      - type: web_presenter
+        label: "Secondary Encoder"
+        host: "192.168.1.101"
+        api_path: "/status.json"
+
+  - name: "Vimeo Live Event"
+    enabled: true
+    polling_interval: 60
+    providers:
+      - type: vimeo
+        label: "Vimeo API"
+        event_id: "123456"
+        api_key_env: "VIMEO_API_KEY"   # env var containing Vimeo API token
+      - type: ffprobe
+        label: "Vimeo HLS"
+        url: "https://player.vimeo.com/event/123456/hls.m3u8"
+
+  - name: "YouTube Live Stream"
+    enabled: true
+    polling_interval: 60
+    providers:
+      - type: youtube
+        label: "YouTube API"
+        video_id: "abcd1234"
+        api_key_env: "YOUTUBE_API_KEY"
+      - type: http
+        label: "YouTube HLS"
+        url: "https://youtube.com/hls/abcd1234.m3u8"
+
+# Alerts Configuration: define alert channels and thresholds
+alerts:
+  - name: "Default Email Alert"
+    type: email
+    enabled: true
+    threshold: 70.0                    # Health score threshold (0-100)
+    settings:
+      recipients:
+        - "alerts@example.com"
+      smtp_server_env: "SMTP_SERVER"  # environment variable names
+      smtp_port_env: "SMTP_PORT"
+      smtp_user_env: "SMTP_USER"
+      smtp_pass_env: "SMTP_PASS"
+
+# Health Score Calculation Weights: must sum to 1.0
+metric_weights:
+  - name: status
+    weight: 0.4
+  - name: bitrate
+    weight: 0.2
+  - name: packet_loss
+    weight: 0.2
+  - name: latency
+    weight: 0.2 

@@ -5,6 +5,7 @@
 * **Python Version:** 3.12
 * **Package Manager:** UV (Rust-based Python package manager)
 * **Virtual Environment:** venv
+* **Environment Activation:** All commands must be executed within the activated virtual environment (e.g., `source venv/bin/activate`).
 * **IDE Recommendations:** VS Code with Python extensions
 
 ## Dependencies and Libraries
@@ -35,14 +36,26 @@
   * Built-in caching for faster reinstalls
   * Improved virtual environment management
 
+* **Best Practices:**
+  * **Install all dependencies using UV** so they are automatically tracked in `pyproject.toml`:
+    ```bash
+    uv pip install <package_name> --update
+    ```
+  * To install from requirements:
+    ```bash
+    uv pip install -r requirements.txt
+    ```
+  * **Always update `pyproject.toml`** via UV when adding new packages.
+  * **Ensure UV commands are run inside the venv** to keep project dependencies isolated.
+
 * **Installation:**
   * Direct installation: `curl -sSf https://install.python-uv.org | python3`
   * Via pip: `pip install uv`
 
 * **Basic Usage:**
-  * Install dependencies: `uv pip install -r requirements.txt`
-  * Add package: `uv pip install package_name --update-requirements`
   * Create virtual environment: `uv venv venv`
+  * Install dependencies: `uv pip install -r requirements.txt`
+  * Add package: `uv pip install package_name --update`
 
 * **Performance Benefits:**
   * Local development: Faster setup and iteration
